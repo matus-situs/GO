@@ -15,9 +15,20 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    @if (Auth::user()->role == "admin")
+                    <x-nav-link :href="route('employeelist.index')" :active="request()->routeIs('employeelist.index')">
+                        {{ __('Employees list') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
+                        {{ __('Projects') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('addemployee')" :active="request()->routeIs('addemployee')">
                         {{ __('Add Employee') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('addproject.index')" :active="request()->routeIs('addproject.index')">
+                        {{ __('Add Project') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -68,6 +79,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('addemployee')" :active="request()->routeIs('addemployee')">
+                {{ __('Add Employee') }}
             </x-responsive-nav-link>
         </div>
 

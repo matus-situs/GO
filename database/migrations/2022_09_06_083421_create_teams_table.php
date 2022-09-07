@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId("leader")->constrained("employees");
             $table->foreignId("project")->constrained("projects");
+            $table->timestamps();
         });
     }
 

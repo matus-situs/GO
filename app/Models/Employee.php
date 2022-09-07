@@ -12,6 +12,6 @@ class Employee extends Model implements Authenticatable
     use HasFactory;
     use AuthenticableTrait;
     protected $fillable = [
-        "name", "email", "password"
+        "name","surname", "email", "password"
     ];
 }

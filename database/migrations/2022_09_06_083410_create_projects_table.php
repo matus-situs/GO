@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId("leader")->constrained("employees");
-            $table->date('creation_date');
+            $table->timestamps();
         });
     }
 

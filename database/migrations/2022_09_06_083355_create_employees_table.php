@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname')->nullable();
             $table->string('email')->unique();
-            $table->integer("remaining_vacation")->nullable();
-            $table->string('role')->nullable();
+            $table->integer("remaining_vacation")->default(20);
+            $table->string('role')->default("employee");
             $table->string("password");
             $table->timestamps();
         });

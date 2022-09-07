@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId("team_lead_approved")->nullable()->constrained("teams");
             $table->foreignId("project_lead_approved")->nullable()->constrained("projects");
             $table->string("status")->default("waiting approval");
+            $table->timestamps();
         });
     }
 
