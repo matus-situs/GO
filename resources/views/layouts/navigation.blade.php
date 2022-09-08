@@ -22,11 +22,20 @@
                     <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
                         {{ __('Projects') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('teams.index')" :active="request()->routeIs('teams.index')">
+                        {{ __('Teams') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('addemployee')" :active="request()->routeIs('addemployee')">
                         {{ __('Add Employee') }}
                     </x-nav-link>
                     <x-nav-link :href="route('addproject.index')" :active="request()->routeIs('addproject.index')">
                         {{ __('Add Project') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('addteams.index')" :active="request()->routeIs('addteams.index')">
+                        {{ __('Create team') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('vacation.index')" :active="request()->routeIs('vacation.index')">
+                        {{ __('Employees on vacation') }}
                     </x-nav-link>
                     @endif
                 </div>

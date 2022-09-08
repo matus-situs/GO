@@ -42,8 +42,13 @@
 
                         <div class="mt-4">
                             <x-label for="role" :value="__('Role')" />
+                            <select id="role" name="role">
+                                <option value="employee">Employee</option>
+                                <option value="team leader">Team leader</option>
+                                <option value="project leader">Project leader</option>
+                            </select>
 
-                            <x-input id="role" class="block mt-1 w-full" type="text" name="role" value="{{ $employee->role }}"/>
+                            <!--<x-input id="role" class="block mt-1 w-full" type="text" name="role" value="{{ $employee->role }}"/>-->
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

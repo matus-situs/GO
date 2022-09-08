@@ -11,12 +11,18 @@ class ProjectsController extends Controller
     public function index() {
         $projects = Project::paginate();
 
+        foreach($projects as $project) {
+            $leader = Employee::findOrFail($project->leader);
+            $project->leader = $leader->name;
+        }
+
         return view("admin.projects", compact("projects"));
     }
     public function post(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'leader' => ['required', 'string'],
         ]);
 
         $project = Project::create([
