@@ -55,7 +55,8 @@ Route::group(["middleware" => "auth"], function () {
     });
 
     Route::group(["middleware" => "employee"], function () {
-        //ovdje ruta za zaposlenika
+        Route::resource("employeeteam", \App\Http\Controllers\EmployeeTeamController::class);
+        Route::resource("employeeproject", \App\Http\Controllers\EmployeeProjectController::class);
     });
 });
 require __DIR__ . '/auth.php';

@@ -38,6 +38,14 @@
                         {{ __('Employees on vacation') }}
                     </x-nav-link>
                     @endif
+                    @if (Auth::user()->role == "employee")
+                    <x-nav-link :href="route('employeeteam.index')" :active="request()->routeIs('employeeteam.index')">
+                        {{ __('My team') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('employeeproject.index')" :active="request()->routeIs('employeeproject.index')">
+                        {{ __('Team project') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
