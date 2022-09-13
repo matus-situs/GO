@@ -3,27 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use App\Models\Member;
 use App\Models\Project;
 use App\Models\Team;
 use App\Models\Vacation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EmployeeVacationController extends Controller
+class ProjectLeaderVacationsController extends Controller
 {
     public function index()
     {
         $vacations = Vacation::where("employee", Auth::user()->id)->get();
-        $member = Member::where("employee", Auth::user()->id)->first();
-        $team = Team::findOrFail($member->team);
-        $teamleader = Employee::findOrFail($team->leader);
-        $project = Project::findOrFail($team->project);
-        $projectleader = Employee::findOrFail($project->leader);
-        $vacations->team_lead_approved = $teamleader->name;
-        $team->projectlead_approved = $projectleader->name;
+        foreach($vacations as $vacation) {
+            $project = Project::where("id", $vacation->project_lead_approved)->first();
+            $team = Team::where("project", $project->id);
+            //$teamleader = Employee::where("id", $team->leader)->first();
+            //$vacation->team_lead_approved = $teamleader->name;
+        }
 
-        return view("employee.vacations", compact("vacations"));
+        return view("projectleader.vacations", compact("vacations"));
     }
 
     public function request(Request $request)
@@ -34,11 +32,14 @@ class EmployeeVacationController extends Controller
             'description' => ['required', 'string'],
         ]);
 
+        $project = 3; //Team::where("leader", Auth::user()->id)->first();
+
         $vacation = Vacation::create([
             'employee' => Auth::user()->id,
             'start' => $request->start,
             'end' => $request->end,
             'description' => $request->description,
+            'project_lead_approved' => $project
         ]);
 
         $vacation->save();

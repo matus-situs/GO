@@ -34,7 +34,7 @@
                     <x-nav-link :href="route('addteams.index')" :active="request()->routeIs('addteams.index')">
                         {{ __('Create team') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('vacation.index')" :active="request()->routeIs('vacation.index')">
+                    <x-nav-link :href="route('employeesvacation.index')" :active="request()->routeIs('employeesvacation.index')">
                         {{ __('Employees on vacation') }}
                     </x-nav-link>
                     @endif
@@ -44,6 +44,46 @@
                     </x-nav-link>
                     <x-nav-link :href="route('employeeproject.index')" :active="request()->routeIs('employeeproject.index')">
                         {{ __('Team project') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('myvacations.index')" :active="request()->routeIs('myvacations.index')">
+                        {{ __('My Vacations') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('newvacation')" :active="request()->routeIs('newvacation')">
+                        {{ __('Request Vacation') }}
+                    </x-nav-link>
+                    @endif
+                    @if (Auth::user()->role == "team leader")
+                    <x-nav-link :href="route('leaderteam.index')" :active="request()->routeIs('leaderteam.index')">
+                        {{ __('My team') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('leaderproject.index')" :active="request()->routeIs('leaderproject.index')">
+                        {{ __('Project') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('myvacationstl.index')" :active="request()->routeIs('myvacationstl.index')">
+                        {{ __('My Vacations') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('newvacationtl')" :active="request()->routeIs('newvacationtl')">
+                        {{ __('Request Vacation') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pendingvacationteam.index')" :active="request()->routeIs('pendingvacationteam.index')">
+                        {{ __('Pending Employee Vacations') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('employeesonvacation.index')" :active="request()->routeIs('employeesonvacation.index')">
+                        {{ __('Employees on Vacation') }}
+                    </x-nav-link>
+                    @endif
+                    @if(Auth::user()->role == "project leader")
+                    <x-nav-link :href="route('myproject.index')" :active="request()->routeIs('myproject.index')">
+                        {{ __('My Project') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('myvacationspl.index')" :active="request()->routeIs('myvacationspl.index')">
+                        {{ __('My Vacations') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('newvacationpl')" :active="request()->routeIs('newvacationpl')">
+                        {{ __('Request Vacation') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pendingvacationproject.index')" :active="request()->routeIs('pendingvacationproject.index')">
+                        {{ __('Pending Employee Vacations') }}
                     </x-nav-link>
                     @endif
                 </div>
