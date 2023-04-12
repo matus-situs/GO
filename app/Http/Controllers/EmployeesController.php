@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+Use App\Interfaces\EmployeeInterface;
+use App\Repositories\EmployeeRepository;
 
 class EmployeesController extends Controller
 {
     /*
     *@return \Illuminate\Http\Response
     */
+    protected $employeeInterface;
+
+    public function __construct(EmployeeInterface $employeeRepository)
+    {
+        $this->employeeInterface = $employeeRepository;
+    }
+
     public function index() {
-        $employees = Employee::paginate();
+        $employees = $this->employeeInterface->getAll();
 
         return view("admin.employeelist", compact("employees"));
     }
-    public static function edit(int $id) {
-        $employee = Employee::findOrFail($id);
+    public static function edit(Employee $employee) {
         return view("admin.editemployee", compact("employee"));
     }
     public function update(Request $request) {
@@ -28,7 +36,7 @@ class EmployeesController extends Controller
             'vacation' => ['int'],
             'role' => ['required', 'string'],
         ]);
-        $user = Employee::where('email',  $request->input("email"))->first();
+        $user = $this->employeeInterface->findByKey('email',  $request->input("email"));
         $user->role = $request->input("role");
         $user->save();
 

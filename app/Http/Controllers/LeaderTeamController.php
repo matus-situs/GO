@@ -23,3 +23,4 @@ class LeaderTeamController extends Controller
         return view("teamleader.team", compact("team"))->with(compact("employees"));
     }
 }
+

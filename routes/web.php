@@ -63,12 +63,12 @@ Route::group(["middleware" => "auth"], function () {
     });
 
     Route::group(["middleware" => "team leader"], function () {
-        Route::resource("leaderteam", \App\Http\Controllers\TeamLeaderTeamController::class);
-        Route::resource("leaderproject", \App\Http\Controllers\TeamLeaderProjectController::class);
+        Route::resource("leaderteam", \App\Http\Controllers\LeaderTeamController::class);
+        Route::resource("leaderproject", \App\Http\Controllers\LeaderProjectController::class);
         Route::resource("myvacationstl", \App\Http\Controllers\TeamLeaderVacationController::class);
         
-        Route::view("newvacationtl", "employee.newvacation")->name("newvacationtl");
-        Route::post("employeevacation", [\App\Http\Controllers\TeamLeaderVacationController::class, "request"])->name("employeevacation.request");
+        Route::view("newvacationtl", "teamleader.newvacation")->name("newvacationtl");
+        Route::post("teamleadervacation", [\App\Http\Controllers\TeamLeaderVacationController::class, "request"])->name("teamleadervacation.request");
 
         Route::resource("pendingvacationteam", \App\Http\Controllers\PendingVacationTeamController::class);
         Route::get("pendingvacationteam/{id}/approve", "\App\Http\Controllers\PendingVacationTeamController@approve")->name("pending.approve");
@@ -81,12 +81,12 @@ Route::group(["middleware" => "auth"], function () {
         Route::resource("myproject", \App\Http\Controllers\ProjectLeaderProjectController::class);
         Route::resource("myvacationspl", \App\Http\Controllers\ProjectLeaderVacationsController::class);
 
-        Route::view("newvacationpl", "employee.newvacation")->name("newvacationpl");
-        Route::post("employeevacation", [\App\Http\Controllers\ProjectLeaderVacationsController::class, "request"])->name("employeevacation.request");
+        Route::view("newvacationpl", "projectleader.newvacation")->name("newvacationpl");
+        Route::post("projectleadervacations", [\App\Http\Controllers\ProjectLeaderVacationsController::class, "request"])->name("projectleadervacations.request");
 
         Route::resource("pendingvacationproject", \App\Http\Controllers\PendingVacationProjectController::class);
-        Route::get("pendingvacationteam/{id}/approve", "\App\Http\Controllers\PendingVacationProjectController@approve")->name("pendingpl.approve");
-        Route::get("pendingvacationteam/{id}/deny", "\App\Http\Controllers\PendingVacationProjectController@deny")->name("pendingpl.deny");
+        Route::get("pendingvacationproject/{id}/approve", "\App\Http\Controllers\PendingVacationProjectController@approve")->name("pendingpl.approve");
+        Route::get("pendingvacationproject/{id}/deny", "\App\Http\Controllers\PendingVacationProjectController@deny")->name("pendingpl.deny");
     });
 });
 require __DIR__ . '/auth.php';

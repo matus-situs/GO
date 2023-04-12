@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Member;
+use App\Models\Project;
 use App\Models\Team;
 use App\Models\Vacation;
 use Illuminate\Http\Request;

@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <x-success-message/>
+                    <x-success-message />
                     <table>
                         <thead>
                             <th>
@@ -37,6 +37,28 @@
                                 </td>
                                 @endif
                                 @endforeach
+                                <td>
+                                    {{ $vacation->start }}
+                                </td>
+                                <td>
+                                    {{ $vacation->end }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('pendingpl.approve', $vacation) }}">Approve</a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('pendingpl.deny', $vacation) }}">Deny</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @foreach($leadervacations as $vacation)
+                            <tr>
+                                <td>
+                                    {{ $teamleader->name }}
+                                </td>
+                                <td>
+                                    {{ $teamleader->surname }}
+                                </td>
                                 <td>
                                     {{ $vacation->start }}
                                 </td>
